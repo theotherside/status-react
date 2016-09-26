@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 echo "ANDROID_HOME:  $ANDROID_HOME"
+cat ~/.bash_profile
+source ~/.bash_profile
+echo "ANDROID_HOME:  $ANDROID_HOME"
 ./scripts/figwheel_background.sh
 ./scripts/reactnative_background.sh
 ./scripts/appium_background.sh
