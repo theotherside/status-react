@@ -4,6 +4,6 @@ set timeout 600
 exec cd ..
 spawn -ignore HUP appium
 expect -ex "Appium REST http interface listener started"
-send_user "Appium Initialized"
+send_user "Appium Initialized\n"
 expect_background
 exit 0
