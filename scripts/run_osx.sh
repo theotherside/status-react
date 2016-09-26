@@ -1,4 +1,5 @@
 #!/bin/sh
+cd ..
 
 [ `uname -s` != "Darwin" ] && return
 
