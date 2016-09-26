@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo `pwd`
+echo "ANDROID_HOME:  $ANDROID_HOME"
 ./scripts/figwheel_background.sh
 ./scripts/reactnative_background.sh
 ./scripts/appium_background.sh
