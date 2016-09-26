@@ -9,7 +9,8 @@ brew outdated android-ndk || brew unlink android-ndk && brew install android-ndk
 [ -z "$ANT_HOME" ]          && echo 'export ANT_HOME=/usr/local/opt/ant' >> ~/.bash_profile
 [ -z "$MAVEN_HOME" ]        && echo 'export MAVEN_HOME=/usr/local/opt/maven' >> ~/.bash_profile
 [ -z "$GRADLE_HOME" ]       && echo 'export GRADLE_HOME=/usr/local/opt/gradle' >> ~/.bash_profile
-[ -z "$ANDROID_HOME" ]      && echo 'export ANDROID_HOME=/usr/local/opt/android-sdk' >> ~/.bash_profile
+# [ -z "$ANDROID_HOME" ]      && echo 'export ANDROID_HOME=/usr/local/opt/android-sdk' >> ~/.bash_profile
+echo 'export ANDROID_HOME=/usr/local/opt/android-sdk' >> ~/.bash_profile
 [ -z "$ANDROID_NDK_HOME" ]  && echo 'export ANDROID_NDK_HOME=/usr/local/opt/android-ndk' >> ~/.bash_profile
 echo 'export PATH=$ANT_HOME/bin:$PATH' >> ~/.bash_profile
 echo 'export PATH=$MAVEN_HOME/bin:$PATH' >> ~/.bash_profile
