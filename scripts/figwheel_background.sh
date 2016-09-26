@@ -4,6 +4,6 @@ set timeout 600
 exec cd ..
 spawn -ignore HUP lein figwheel android ios
 expect -ex "Prompt will show when Figwheel connects to your application"
-send_user "Figwheel Initialized"
+send_user "Figwheel Initialized\n"
 expect_background
 exit 0
