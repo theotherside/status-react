@@ -17,3 +17,4 @@ adb shell settings put global transition_animation_scale 0 &
 adb shell settings put global animator_duration_scale 0 &
 adb shell input keyevent 82 & # unlock
 sleep 3 # wait a little
+echo "Android Emulator Initialized"
