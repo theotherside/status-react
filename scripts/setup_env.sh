@@ -18,7 +18,7 @@ echo 'export PATH=$ANDROID_HOME/tools:$PATH' >> ~/.bash_profile
 echo 'export PATH=$ANDROID_HOME/platform-tools:$PATH' >> ~/.bash_profile
 echo 'export PATH=$ANDROID_HOME/build-tools/$(ls $ANDROID_HOME/build-tools | sort | tail -1):$PATH' >> ~/.bash_profile
 # ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-https --no-ui
-( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --all --filter tools,platform-tools,build-tools-23.0.3 --no-ui --force
+( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --all --filter android-23,tools,platform-tools,build-tools-23.0.3 --no-ui --force
 source ~/.bash_profile
 echo "y" | android update sdk -a --no-ui --filter sys-img-armeabi-v7a-android-23
 brew outdated node || brew unlink node && brew install node
