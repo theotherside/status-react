@@ -13,12 +13,14 @@
                                    "/android/app/build/outputs/apk"))
         app          (io/file dir "app-debug.apk")
         capabilities (doto (DesiredCapabilities.)
+                       ; https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/caps.md
                        (.setCapability "deviceName" "test")
                        (.setCapability "platformVersion" "6.0")
                        (.setCapability "app" (.getAbsolutePath app))
                        (.setCapability "appPackage" "com.statusim")
                        (.setCapability "noReset" false)
                        (.setCapability "fullReset" false)
+                       (.setCapability "androidInstallTimeout" 360000)
                        (.setCapability "appActivity" ".MainActivity"))
         driver       (AndroidDriver. (URL. "http://127.0.0.1:4723/wd/hub") capabilities)]
     (-> driver

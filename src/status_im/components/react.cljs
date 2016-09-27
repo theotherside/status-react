@@ -7,7 +7,9 @@
 (def react-native (u/require "react-native"))
 (def native-modules (.-NativeModules react-native))
 (def device-event-emitter (.-DeviceEventEmitter react-native))
-(def geth (.-Geth native-modules))
+(def geth (if (exists? native-modules) 
+                   (.-Geth native-modules)
+                   #js {}))
 
 (def linear-gradient-module (u/require "react-native-linear-gradient"))
 (def dismiss-keyboard! (u/require "dismissKeyboard"))
