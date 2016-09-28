@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo no | android create avd --force --name test --target android-23 --abi x86
-emulator -avd test -no-skin -no-audio -no-window -no-boot-anim &
+emulator -avd test -no-window -no-boot-anim -wipe-data &
 
 adb wait-for-device
 
