@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo no | android create avd --force --name test --target android-23 --abi armeabi-v7a
+echo no | android create avd --force --name test --target android-23 --abi x86
 emulator -avd test -no-skin -no-audio -no-window -no-boot-anim &
 
 adb wait-for-device
