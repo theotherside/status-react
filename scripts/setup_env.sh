@@ -25,4 +25,3 @@ brew outdated watchman || brew unlink watchman && brew install watchman
 brew outdated leiningen || brew unlink leiningen && brew install leiningen
 npm install -g react-native-cli
 npm install -g appium
-lein deps && npm install && ./re-natal deps
