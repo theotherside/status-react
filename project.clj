@@ -16,7 +16,7 @@
                  [org.clojure/test.check "0.9.0"]
                  [cljsjs/chance "0.7.3-0"]
                  [cljsjs/eccjs "0.3.1-0"]]
-  :plugins [[lein-cljsbuild "1.1.1"]
+  :plugins [[lein-cljsbuild "1.1.4"]
             [lein-figwheel "0.5.0-2"]]
   :clean-targets ["target/" "index.ios.js" "index.android.js"]
   :aliases {"prod-build" ^{:doc "Recompile code with prod profile."}
