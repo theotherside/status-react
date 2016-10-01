@@ -19,6 +19,7 @@ xcuserdata
 DerivedData
 *.hmap
 *.ipa
+*.iml
 *.xcuserstate
 project.xcworkspace
 
