@@ -29,17 +29,19 @@
    :content content})
 
 ;; -- Send phone number ----------------------------------------
-(defn on-sign-up-response [& [message]]
-  (let [message-id (random/id)]
-    (dispatch [:received-message
-               {:message-id   message-id
-                :content      (command-content
-                                :confirmation-code
-                                (or message (label :t/confirmation-code)))
-                :content-type content-type-command-request
-                :outgoing     false
-                :from         console-chat-id
-                :to           "me"}])))
+(defn on-sign-up-response [command-parameters]
+  (fn [& [message]]
+    (let [message-id (random/id)]
+      (dispatch-sync [:prepare-command! command-parameters])
+      (dispatch [:received-message
+                 {:message-id   message-id
+                  :content      (command-content
+                                  :confirmation-code
+                                  (or message (label :t/confirmation-code)))
+                  :content-type content-type-command-request
+                  :outgoing     false
+                  :from         console-chat-id
+                  :to           "me"}]))))
 
 (defn handle-sms [{body :body}]
   (when-let [matches (re-matches #"(\d{4})" body)]
@@ -70,23 +72,26 @@
   ;; TODO 'on-sync-contacts' is never called
   (dispatch [:sync-contacts on-sync-contacts]))
 
-(defn on-send-code-response [body]
-  (dispatch [:received-message
-             {:message-id   (random/id)
-              :content      (:message body)
-              :content-type text-content-type
-              :outgoing     false
-              :from         console-chat-id
-              :to           "me"}])
-  (let [status (keyword (:status body))]
-    (when (= :confirmed status)
-      (do
-        (dispatch [:stop-listening-confirmation-code-sms])
-        (sync-contacts)
-        ;; TODO should be called after sync-contacts?
-        (dispatch [:set-signed-up true])))
-    (when (= :failed status)
-      (on-sign-up-response (label :t/incorrect-code)))))
+(defn on-send-code-response
+  [command-parameters]
+  (fn [body]
+    (dispatch-sync [:prepare-command! command-parameters])
+    (dispatch [:received-message
+               {:message-id   (random/id)
+                :content      (:message body)
+                :content-type text-content-type
+                :outgoing     false
+                :from         console-chat-id
+                :to           "me"}])
+    (let [status (keyword (:status body))]
+      (when (= :confirmed status)
+        (do
+          (dispatch [:stop-listening-confirmation-code-sms])
+          (sync-contacts)
+          ;; TODO should be called after sync-contacts?
+          (dispatch [:set-signed-up true])))
+      (when (= :failed status)
+        (on-sign-up-response (label :t/incorrect-code))))))
 
 (defn start-signup []
   (let [message-id (random/id)]
